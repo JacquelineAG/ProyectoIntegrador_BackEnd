@@ -11,19 +11,18 @@ public class Experiencia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String descripcionE;
     private String nombreE;
+    private String descripcionE;
     
     // Constructores
 
     public Experiencia() {
     }
 
-    public Experiencia(String descripcionE, String nombreE) {
-        this.descripcionE = descripcionE;
+    public Experiencia(String nombreE, String descripcionE) {
         this.nombreE = nombreE;
+        this.descripcionE = descripcionE;
     }
-
 
     // Getter & Setter
 
