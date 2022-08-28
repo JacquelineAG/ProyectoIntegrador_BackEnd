@@ -58,10 +58,7 @@ public class CIdioma {
         if(StringUtils.isBlank(dtoidioma.getNombreE())){
             return new ResponseEntity(new Mensaje("El nombre es obligatorio."), HttpStatus.BAD_REQUEST);
         }
-        if(sIdioma.existsByNombreE(dtoidioma.getNombreE())){
-            return new ResponseEntity(new Mensaje("Ese nombre ya existe."), HttpStatus.BAD_REQUEST);
-        }
-        
+
         Idioma idioma = new Idioma (
                 dtoidioma.getNombreE(), dtoidioma.getDescripcionE()
             );
@@ -76,9 +73,7 @@ public class CIdioma {
         if(!sIdioma.existsById(id)){
             return new ResponseEntity(new Mensaje("El ID no existe."), HttpStatus.NOT_FOUND);
         }
-        if(sIdioma.existsByNombreE(dtoidioma.getNombreE()) && sIdioma.getByNmbreE(dtoidioma.getNombreE()).get().getId() != id){
-            return new ResponseEntity(new Mensaje("Ese nombre ya existe."), HttpStatus.BAD_REQUEST);
-        }
+
         if(StringUtils.isBlank(dtoidioma.getNombreE())){
             return new ResponseEntity(new Mensaje("El campo no puede estar vacio."), HttpStatus.BAD_REQUEST);
         }

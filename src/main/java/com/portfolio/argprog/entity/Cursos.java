@@ -12,13 +12,15 @@ public class Cursos {
     private int id;
     private String nombreE;
     private String descripcionE;
+    private String fechaE;
 
     public Cursos() {
     }
 
-    public Cursos(String nombreE, String descripcionE) {
+    public Cursos(String nombreE, String descripcionE, String fechaE) {
         this.nombreE = nombreE;
         this.descripcionE = descripcionE;
+        this.fechaE = fechaE;
     }
 
     public int getId() {
@@ -43,5 +45,13 @@ public class Cursos {
 
     public void setDescripcionE(String descripcionE) {
         this.descripcionE = descripcionE;
+    }
+    
+    public String getFechaE() {
+        return fechaE;
+    }
+
+    public void setFechaE(String fechaE) {
+        this.fechaE = fechaE;
     }
 }

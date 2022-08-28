@@ -13,15 +13,19 @@ public class Experiencia {
     private int id;
     private String nombreE;
     private String descripcionE;
+    private String fechaE;
+    private String tareasE;
     
     // Constructores
 
     public Experiencia() {
     }
 
-    public Experiencia(String nombreE, String descripcionE) {
+    public Experiencia(String nombreE, String descripcionE, String fechaE, String tareasE) {
         this.nombreE = nombreE;
         this.descripcionE = descripcionE;
+        this.fechaE = fechaE;
+        this.tareasE = tareasE;
     }
 
     // Getter & Setter
@@ -48,5 +52,21 @@ public class Experiencia {
 
     public void setNombreE(String nombreE) {
         this.nombreE = nombreE;
+    }
+    
+        public String getFechaE() {
+        return fechaE;
+    }
+
+    public void setFechaE(String fechaE) {
+        this.fechaE = fechaE;
+    }
+    
+    public String getTareasE() {
+        return tareasE;
+    }
+
+    public void setTareasE(String tareasE) {
+        this.tareasE = tareasE;
     }
 }

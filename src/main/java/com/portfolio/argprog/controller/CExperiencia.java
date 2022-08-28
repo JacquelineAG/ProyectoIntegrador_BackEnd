@@ -56,12 +56,9 @@ public class CExperiencia {
     public ResponseEntity<?> create(@RequestBody dtoExperiencia dtoexperiencia){      
         if(StringUtils.isBlank(dtoexperiencia.getNombreE()))
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-        if(sExperiencia.existsByNombreE(dtoexperiencia.getNombreE()))
-            return new ResponseEntity(new Mensaje("Esa experiencia existe"), HttpStatus.BAD_REQUEST);
         
-        Experiencia experiencia = new Experiencia(dtoexperiencia.getNombreE(), dtoexperiencia.getDescripcionE());
+        Experiencia experiencia = new Experiencia(dtoexperiencia.getNombreE(), dtoexperiencia.getDescripcionE(),dtoexperiencia.getFechaE(),dtoexperiencia.getTareasE());
         sExperiencia.save(experiencia);
-        
         return new ResponseEntity(new Mensaje("Experiencia agregada correctamente."), HttpStatus.OK);
     }
     
@@ -70,14 +67,15 @@ public class CExperiencia {
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoExperiencia dtoexperiencia){
         if(!sExperiencia.existsById(id))
             return new ResponseEntity(new Mensaje("El ID no existe."), HttpStatus.BAD_REQUEST);
-        if(sExperiencia.existsByNombreE(dtoexperiencia.getNombreE()) && sExperiencia.getByNombreE(dtoexperiencia.getNombreE()).get().getId() != id)
-            return new ResponseEntity(new Mensaje("Esa experiencia ya existe."), HttpStatus.BAD_REQUEST);
+              
         if(StringUtils.isBlank(dtoexperiencia.getNombreE()))
             return new ResponseEntity(new Mensaje("El nombre es obligatorio."), HttpStatus.BAD_REQUEST);
         
         Experiencia experiencia = sExperiencia.getOne(id).get();
         experiencia.setNombreE(dtoexperiencia.getNombreE());
-        experiencia.setDescripcionE((dtoexperiencia.getDescripcionE()));
+        experiencia.setDescripcionE(dtoexperiencia.getDescripcionE());
+        experiencia.setFechaE(dtoexperiencia.getFechaE());
+        experiencia.setTareasE(dtoexperiencia.getTareasE());
         
         sExperiencia.save(experiencia);
         return new ResponseEntity(new Mensaje("Experiencia actualizada correctamente."), HttpStatus.OK);          

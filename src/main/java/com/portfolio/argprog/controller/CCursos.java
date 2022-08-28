@@ -58,12 +58,9 @@ public class CCursos {
         if(StringUtils.isBlank(dtocursos.getNombreE())){
             return new ResponseEntity(new Mensaje("El nombre es obligatorio."), HttpStatus.BAD_REQUEST);
         }
-        if(sCursos.existsByNombreE(dtocursos.getNombreE())){
-            return new ResponseEntity(new Mensaje("Ese nombre ya existe."), HttpStatus.BAD_REQUEST);
-        }
         
         Cursos cursos = new Cursos (
-                dtocursos.getNombreE(), dtocursos.getDescripcionE()
+                dtocursos.getNombreE(), dtocursos.getDescripcionE(),dtocursos.getFechaE()
             );
         sCursos.save(cursos);
         return new ResponseEntity(new Mensaje("Curso creado correctamente."), HttpStatus.OK);
@@ -76,9 +73,7 @@ public class CCursos {
         if(!sCursos.existsById(id)){
             return new ResponseEntity(new Mensaje("El ID no existe."), HttpStatus.NOT_FOUND);
         }
-        if(sCursos.existsByNombreE(dtocursos.getNombreE()) && sCursos.getByNmbreE(dtocursos.getNombreE()).get().getId() != id){
-            return new ResponseEntity(new Mensaje("Ese nombre ya existe."), HttpStatus.BAD_REQUEST);
-        }
+
         if(StringUtils.isBlank(dtocursos.getNombreE())){
             return new ResponseEntity(new Mensaje("El campo no puede estar vacio."), HttpStatus.BAD_REQUEST);
         }
@@ -87,6 +82,7 @@ public class CCursos {
         
         cursos.setNombreE(dtocursos.getNombreE());
         cursos.setDescripcionE(dtocursos.getDescripcionE());
+        cursos.setFechaE(dtocursos.getFechaE());
         
         sCursos.save(cursos);
         
