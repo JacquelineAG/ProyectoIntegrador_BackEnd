@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/acercade")
+@RequestMapping("/info")
 @CrossOrigin(origins = "https://argprogfrontend.web.app")
 public class CInfo {
     @Autowired
